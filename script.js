@@ -6,10 +6,10 @@ function addItem() {
   row.innerHTML = `
     <td style="text-align: center">${rowCount}</td>
     <td contenteditable="true">Item <br><small contenteditable="true"></small></td>
-    <td contenteditable="true" style="text-align: center">-</td>
-    <td contenteditable="true" style="text-align: center">0.00 Gms.</td>
-    <td contenteditable="true" style="text-align: center">0.00</td> <!-- ROI Column (index 4) -->
-    <td contenteditable="true" style="text-align: center">0.00</td> <!-- Amount Column (index 5) -->
+    <td contenteditable="true" style="text-align: center"></td>
+    <td contenteditable="true" style="text-align: center">Gms.</td>
+    <td contenteditable="true" style="text-align: center"></td> <!-- ROI Column (index 4) -->
+    <td contenteditable="true" style="text-align: center"></td> <!-- Amount Column (index 5) -->
     <td class="delete-cell no-print"><button onclick="deleteRow(this)">❌</button></td>
   `;
   table.appendChild(row);
@@ -53,22 +53,43 @@ function calculateTotals() {
     amountTotal.toFixed(2);
 }
 
-// Single, simplified input handler
+// Improved input handler with cursor position preservation
 document.getElementById("itemsBody").addEventListener("input", (e) => {
   const cell = e.target.closest("td");
   if (!cell) return;
 
   const cellIndex = Array.from(cell.parentElement.cells).indexOf(cell);
 
-  // Auto-format numeric columns (Weight, ROI, Amount)
+  // Only handle numeric columns (Weight, ROI, Amount)
   if ([3, 4, 5].includes(cellIndex)) {
-    const numericValue =
-      parseFloat(cell.textContent.replace(/[^\d.]/g, "")) || 0;
-    cell.textContent = numericValue.toFixed(2);
+    // Save cursor position
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+    const cursorPosition = range.startOffset;
 
-    // Add 'Gms.' suffix only to weight column
+    // Get numeric value
+    const originalText = cell.textContent;
+    const numericValue = parseFloat(originalText.replace(/[^\d.]/g, "")) || 0;
+
+    // Format the value
+    let formattedValue = numericValue.toFixed(2);
     if (cellIndex === 3) {
-      cell.textContent += " Gms.";
+      formattedValue += " Gms.";
+    }
+
+    // Update cell content
+    cell.textContent = formattedValue;
+
+    // Restore cursor position (adjusted for any added characters)
+    try {
+      const newRange = document.createRange();
+      const newCursorPos = Math.min(cursorPosition, formattedValue.length);
+      newRange.setStart(cell.childNodes[0], newCursorPos);
+      newRange.collapse(true);
+      selection.removeAllRanges();
+      selection.addRange(newRange);
+    } catch (e) {
+      console.log("Cursor position restoration error:", e);
     }
   }
 

@@ -40,9 +40,11 @@ function calculateTotals() {
     amountTotal += parseFloat(row.cells[5].textContent) || 0;
   });
 
-  // Display totals with whatever decimals were entered
-  document.getElementById("totalWeightFooter").textContent = totalWeight;
-  document.getElementById("grandTotalFooter").textContent = amountTotal;
+  // Round to 2 decimal places to fix floating point precision issues
+  document.getElementById("totalWeightFooter").textContent =
+    Math.round(totalWeight * 100) / 100;
+  document.getElementById("grandTotalFooter").textContent =
+    Math.round(amountTotal * 100) / 100;
 }
 
 // Completely hands-off input handler

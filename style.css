@@ -131,6 +131,7 @@ body {
 
 /* Specific to 'Billed To' box */
 .bill-box.billed-to {
+  background-color: #e3d6ff !important;
   padding: 10px;
 }
 

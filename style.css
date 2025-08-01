@@ -105,7 +105,7 @@ body {
 .bill-box {
   width: 48%;
   background: #e3d6ff !important;
-  padding: 0px;
+  padding: 10px;
   border: 2px solid var(--primary-color);
   border-radius: 8px;
 }

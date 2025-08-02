@@ -112,19 +112,18 @@
           <table class="header-table billed-to-table">
             <tr>
               <td><strong>Name:</strong></td>
-              <td><textarea rows="2" style="resize: none;"></textarea></td>
+              <td><textarea class="auto-grow" rows="1"></textarea></td>
             </tr>
             <tr>
               <td><strong>Address:</strong></td>
-              <td>
-                <textarea rows="3"></textarea>
-              </td>
+              <td><textarea class="auto-grow" rows="1"></textarea></td>
             </tr>
             <tr>
               <td><strong>Phone:</strong></td>
-              <td><input type="text" value="+91 " /></td>
+              <td><input class="auto-grow" type="text" value="+91 " /></td>
             </tr>
           </table>
+          
         </div>
       </section>
 
@@ -186,5 +185,15 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+      document.querySelectorAll('.auto-grow').forEach((el) => {
+        const resize = () => {
+          el.style.height = 'auto';
+          el.style.height = el.scrollHeight + 'px';
+        };
+        el.addEventListener('input', resize);
+        resize(); // initial adjustment
+      });
+    </script>
   </body>
 </html>

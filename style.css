@@ -168,7 +168,44 @@ body {
     height: auto !important;
   }
 }
+/* Textarea Container for Print Fix */
+.textarea-container {
+  position: relative;
+}
 
+.textarea-container textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
+  resize: none;
+  font-size: 18px;
+  padding: 2px 4px;
+  line-height: 1.3;
+  border-bottom: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.textarea-container .print-content {
+  display: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 18px;
+  line-height: 1.3;
+  padding: 2px 4px;
+}
+
+@media print {
+  .textarea-container textarea {
+    display: none !important;
+  }
+  
+  .textarea-container .print-content {
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+    page-break-inside: avoid;
+  }
+}
 .billed-to-table input,
 .billed-to-table textarea {
   width: 100%;

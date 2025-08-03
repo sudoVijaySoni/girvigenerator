@@ -112,18 +112,27 @@
           <table class="header-table billed-to-table">
             <tr>
               <td><strong>Name:</strong></td>
-              <td><textarea class="auto-grow" rows="1"></textarea></td>
+              <td>
+                <div class="textarea-container">
+                  <textarea class="auto-grow" rows="1"></textarea>
+                  <div class="print-content" aria-hidden="true"></div>
+                </div>
+              </td>
             </tr>
             <tr>
               <td><strong>Address:</strong></td>
-              <td><textarea class="auto-grow" rows="1"></textarea></td>
+              <td>
+                <div class="textarea-container">
+                  <textarea class="auto-grow" rows="1"></textarea>
+                  <div class="print-content" aria-hidden="true"></div>
+                </div>
+              </td>
             </tr>
             <tr>
               <td><strong>Phone:</strong></td>
               <td><input class="auto-grow" type="text" value="+91 " /></td>
             </tr>
           </table>
-          
         </div>
       </section>
 
@@ -186,14 +195,30 @@
 
     <script src="script.js"></script>
     <script>
-      document.querySelectorAll('.auto-grow').forEach((el) => {
-        const resize = () => {
-          el.style.height = 'auto';
-          el.style.height = el.scrollHeight + 'px';
-        };
-        el.addEventListener('input', resize);
-        resize(); // initial adjustment
-      });
+     // Auto-resize textareas + sync print content
+document.querySelectorAll('.auto-grow').forEach((el) => {
+  const resize = () => {
+    el.style.height = 'auto';
+    el.style.height = el.scrollHeight + 'px';
+    
+    // Sync content to print div
+    if (el.tagName === 'TEXTAREA') {
+      const printContent = el.closest('.textarea-container').querySelector('.print-content');
+      printContent.textContent = el.value;
+    }
+  };
+  
+  el.addEventListener('input', resize);
+  resize(); // Initial adjustment
+});
+
+// Ensure print content updates before printing
+window.addEventListener('beforeprint', () => {
+  document.querySelectorAll('.textarea-container textarea').forEach(textarea => {
+    const printContent = textarea.closest('.textarea-container').querySelector('.print-content');
+    printContent.textContent = textarea.value;
+  });
+});
     </script>
   </body>
 </html>

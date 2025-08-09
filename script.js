@@ -54,24 +54,12 @@ document.getElementById("itemsBody").addEventListener("input", (e) => {
 
 // Rest of the code remains the same...
 function getCurrentDate() {
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
   const today = new Date();
-  return `${today.getDate()} ${
-    months[today.getMonth()]
-  } ${today.getFullYear()}`;
+  const day = String(today.getDate()).padStart(2, "0");
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const year = String(today.getFullYear()).slice(-2); // last two digits
+
+  return `${day}/${month}/${year}`;
 }
 
 function downloadPDF() {

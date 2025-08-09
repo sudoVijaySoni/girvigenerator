@@ -12,7 +12,7 @@
           margin: 0;
         }
         body {
-          margin: 0;
+          margin: 1cm;
         }
         .no-print {
           display: none !important;
@@ -40,145 +40,152 @@
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
         }
+
+        .terms-footer {
+          position: fixed;
+          bottom: 0;
+          left: 1cm;
+          right: 1cm;
+          padding: 10px;
+          background: white;
+          border-top: 2px solid #703ed7;
+        }
+
+        .main-content {
+          margin-bottom: 150px; /* Space for footer */
+        }
+
+        .terms-section {
+          display: none !important;
+        }
       }
 
-      .qr {
-        width: 100px;
-        height: 100px;
-        border: 2px solid #000;
-        padding: 5px;
-        box-sizing: border-box;
+      /* Rest of your existing style tags remain the same */
+      .terms-footer {
+        display: none; /* Hidden in screen view */
       }
 
-      .estimate-heading {
-        text-align: center;
-        font-weight: bold;
-        font-size: 20px;
-        margin-top: 10px;
-      }
-
-      .edit-btn {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 14px;
-        margin-left: 5px;
-        color: #000;
-      }
-
-      .new-page {
-        page-break-before: always;
-        padding: 20px;
-        border: 2px solid #000;
+      .terms-section {
+        padding: 0 10px; /* Fix right padding issue */
       }
     </style>
   </head>
   <body>
     <div id="invoice">
-      <div class="estimate-heading">G</div>
-      <header class="top-header">
-        <div class="left-header">
-          <table class="header-table">
-            <tr>
-              <td><strong>Voucher No.:</strong></td>
-              <td><input type="text" value="" /></td>
-            </tr>
-            <tr>
-              <td><strong>Date:</strong></td>
-              <td><input type="text" value="" /></td>
-            </tr>
-           
+      <div class="main-content">
+        <div class="estimate-heading">G</div>
+        <header class="top-header">
+          <div class="left-header">
+            <table class="header-table">
+              <tr>
+                <td><strong>Voucher No.:</strong></td>
+                <td><input type="text" value="" /></td>
+              </tr>
+              <tr>
+                <td><strong>Date:</strong></td>
+                <td><input type="text" value="" /></td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="right-header">
+            <img src="logo.png" alt="Roop Sangam Logo" class="logo" />
+          </div>
+        </header>
+
+        <section class="bill-section">
+          <div class="bill-box left-box">
+            <h4>Billed By</h4>
+            <p><strong>SHREE ROOP SANGAM JEWELLERS</strong></p>
+            <p>Address: Rabodi 2, Thane.</p>
+            <p>Phone: +91 77770 03356</p>
+          </div>
+
+          <div class="bill-box right-box billed-to">
+            <h4>Billed To</h4>
+            <table class="header-table billed-to-table">
+              <tr>
+                <td><strong>Name:</strong></td>
+                <td>
+                  <div class="textarea-container">
+                    <textarea class="auto-grow" rows="1"></textarea>
+                    <div class="print-content" aria-hidden="true"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Address:</strong></td>
+                <td>
+                  <div class="textarea-container">
+                    <textarea class="auto-grow" rows="1"></textarea>
+                    <div class="print-content" aria-hidden="true"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Phone:</strong></td>
+                <td><input class="auto-grow" type="text" value="+91 " /></td>
+              </tr>
+            </table>
+          </div>
+        </section>
+
+        <section class="summary-section bordered-box">
+          <table id="invoiceTable">
+            <thead>
+              <tr>
+                <th style="text-align: center">Sr No.</th>
+                <th>Summary</th>
+                <th style="text-align: center">Purity</th>
+                <th style="text-align: center">Weight</th>
+                <th style="text-align: center">ROI</th>
+                <th style="text-align: center">Amount</th>
+                <th class="no-print">Action</th>
+              </tr>
+            </thead>
+            <tbody id="itemsBody"></tbody>
+            <tfoot>
+              <tr>
+                <td style="border: none"></td>
+                <td
+                  colspan="1"
+                  style="border: none; font-weight: bold; text-align: center"
+                >
+                  Total:
+                </td>
+                <td
+                  id="totalPiecesFooter"
+                  style="text-align: center; font-weight: bold"
+                ></td>
+                <td
+                  id="totalWeightFooter"
+                  style="text-align: center; font-weight: bold"
+                ></td>
+                <td style="border: none"></td>
+                <td
+                  id="grandTotalFooter"
+                  style="text-align: center; font-weight: bold"
+                ></td>
+                <td class="no-print" style="border: none"></td>
+              </tr>
+            </tfoot>
           </table>
-        </div>
+          <div class="summary-footer">
+            <button onclick="addItem()" class="no-print">Add Item</button>
+          </div>
+        </section>
+      </div>
 
-        <div class="right-header">
-          <img src="logo.png" alt="Roop Sangam Logo" class="logo" />
-        </div>
-      </header>
-
-      <section class="bill-section">
-        <div class="bill-box left-box">
-          <h4>Billed By</h4>
-          <p><strong>SHREE ROOP SANGAM JEWELLERS</strong></p>
-          <p>Address: Rabodi 2, Thane.</p>
-          <!-- <p>GSTIN: 27JLRPS4638P1ZP</p>
-          <p>PAN: JLRPS4638P</p>
-          <p>Email: support@roopsangamgems.com</p> -->
-          <p>Phone: +91 77770 03356</p>
-        </div>
-
-        <div class="bill-box right-box billed-to">
-          <h4>Billed To</h4>
-          <table class="header-table billed-to-table">
-            <tr>
-              <td><strong>Name:</strong></td>
-              <td>
-                <div class="textarea-container">
-                  <textarea class="auto-grow" rows="1"></textarea>
-                  <div class="print-content" aria-hidden="true"></div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Address:</strong></td>
-              <td>
-                <div class="textarea-container">
-                  <textarea class="auto-grow" rows="1"></textarea>
-                  <div class="print-content" aria-hidden="true"></div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Phone:</strong></td>
-              <td><input class="auto-grow" type="text" value="+91 " /></td>
-            </tr>
-          </table>
-        </div>
-      </section>
-
-      <section class="summary-section bordered-box">
-        <table id="invoiceTable">
-          <thead>
-            <tr>
-              <th style="text-align: center">Sr No.</th>
-              <th>Summary</th>
-              <th style="text-align: center">Purity</th>
-              <th style="text-align: center">Weight</th>
-              <th style="text-align: center">ROI</th>
-              <th style="text-align: center">Amount</th>
-              <th class="no-print">Action</th>
-            </tr>
-          </thead>
-          <tbody id="itemsBody"></tbody>
-          <tfoot>
-            <tr>
-              <td style="border: none"></td>
-              <td colspan="1" style="border: none; font-weight: bold; text-align: center">
-                Total:
-              </td>
-              <td id="totalPiecesFooter" style="text-align: center; font-weight: bold"></td>
-              <td id="totalWeightFooter" style="text-align: center; font-weight: bold"></td>
-              <td style="border: none"></td>
-              <td id="grandTotalFooter" style="text-align: center; font-weight: bold"></td>
-              <td class="no-print" style="border: none"></td>
-            </tr>
-          </tfoot>
-        </table>
-        <div class="summary-footer">
-          <button onclick="addItem()" class="no-print">Add Item</button>
-        </div>
-      </section>
-      <div>
-      
+      <!-- Terms and Conditions Footer (for printing) -->
+      <div class="terms-footer">
         <section class="terms-sign bordered-box">
           <h4>Terms and Conditions</h4>
           <ol>
             <li>
-              गहाण ठेवलेली वस्तू १२ महिन्यांच्या आत परत घेणे आवश्यक आहे, अन्यथा ती मोडली जाईल.
+              गहाण ठेवलेली वस्तू १२ महिन्यांच्या आत परत घेणे आवश्यक आहे, अन्यथा
+              ती मोडली जाईल.
             </li>
-            <li>
-              दर महिन्याला व्याज भरावे लागेल.
-            </li>
+            <li>दर महिन्याला व्याज भरावे लागेल.</li>
           </ol>
           <div class="signatures">
             <p>Proprietor signature</p>
@@ -188,37 +195,63 @@
         </section>
       </div>
 
-    <div class="buttons no-print">
-      <button onclick="window.print()">Print PDF</button>
-      <button onclick="downloadPDF()">Download PDF</button>
+      <!-- Original Terms section (for screen view) -->
+      <div class="terms-section no-print">
+        <section class="terms-sign bordered-box">
+          <h4>Terms and Conditions</h4>
+          <ol>
+            <li>
+              गहाण ठेवलेली वस्तू १२ महिन्यांच्या आत परत घेणे आवश्यक आहे, अन्यथा
+              ती मोडली जाईल.
+            </li>
+            <li>दर महिन्याला व्याज भरावे लागेल.</li>
+          </ol>
+          <div class="signatures">
+            <p>Proprietor signature</p>
+            <p>Customer signature</p>
+          </div>
+          <p class="thank-you">Thank you</p>
+        </section>
+      </div>
+
+      <div class="buttons no-print">
+        <button onclick="window.print()">Print PDF</button>
+        <button onclick="downloadPDF()">Download PDF</button>
+      </div>
     </div>
 
     <script src="script.js"></script>
     <script>
-     // Auto-resize textareas + sync print content
-document.querySelectorAll('.auto-grow').forEach((el) => {
-  const resize = () => {
-    el.style.height = 'auto';
-    el.style.height = el.scrollHeight + 'px';
-    
-    // Sync content to print div
-    if (el.tagName === 'TEXTAREA') {
-      const printContent = el.closest('.textarea-container').querySelector('.print-content');
-      printContent.textContent = el.value;
-    }
-  };
-  
-  el.addEventListener('input', resize);
-  resize(); // Initial adjustment
-});
+      // Auto-resize textareas + sync print content
+      document.querySelectorAll(".auto-grow").forEach((el) => {
+        const resize = () => {
+          el.style.height = "auto";
+          el.style.height = el.scrollHeight + "px";
 
-// Ensure print content updates before printing
-window.addEventListener('beforeprint', () => {
-  document.querySelectorAll('.textarea-container textarea').forEach(textarea => {
-    const printContent = textarea.closest('.textarea-container').querySelector('.print-content');
-    printContent.textContent = textarea.value;
-  });
-});
+          // Sync content to print div
+          if (el.tagName === "TEXTAREA") {
+            const printContent = el
+              .closest(".textarea-container")
+              .querySelector(".print-content");
+            printContent.textContent = el.value;
+          }
+        };
+
+        el.addEventListener("input", resize);
+        resize(); // Initial adjustment
+      });
+
+      // Ensure print content updates before printing
+      window.addEventListener("beforeprint", () => {
+        document
+          .querySelectorAll(".textarea-container textarea")
+          .forEach((textarea) => {
+            const printContent = textarea
+              .closest(".textarea-container")
+              .querySelector(".print-content");
+            printContent.textContent = textarea.value;
+          });
+      });
     </script>
   </body>
 </html>

@@ -3,7 +3,7 @@
   --primary-color: #703ed7;
   --border-color: #ccc;
   --background: #f9f6fd;
-  --font-size: 20px; /* Reduced from 20px */
+  --font-size: 22px;
 }
 
 body,
@@ -16,7 +16,7 @@ table {
 
 .header-table {
   border-collapse: collapse;
-  font-size: 15x; /* Reduced from 20px */
+  font-size: 15x;
 }
 
 .header-table td {
@@ -27,7 +27,7 @@ table {
 .header-table input {
   border: none;
   padding: 2px 4px;
-  font-size: 20px; /* Reduced from 20px */
+  font-size: 22px;
   width: 133px;
 }
 
@@ -58,6 +58,11 @@ body {
   border: 1px solid var(--border-color);
   padding: 20px;
   background: white;
+  position: relative;
+}
+
+.main-content {
+  margin-bottom: 20px;
 }
 
 .top-header {
@@ -71,7 +76,7 @@ body {
 .left-header h3 {
   color: var(--primary-color);
   margin-bottom: 5px;
-  font-size: 20px; /* Reduced size */
+  font-size: 22px;
 }
 
 .left-header p {
@@ -88,8 +93,8 @@ body {
 }
 
 .right-header .logo {
-  width: 150px; /* Reduced from 200px */
-  height: 71px; /* Reduced proportionally from 95px */
+  width: 150px;
+  height: 71px;
   object-fit: contain;
 }
 
@@ -113,12 +118,12 @@ body {
 .bill-box h4 {
   margin-top: 0;
   color: var(--primary-color);
-  font-size: 20px; /* Reduced size */
+  font-size: 22px;
 }
 
 .bill-box p {
   margin: 4px 0;
-  font-size: 18px; /* Reduced size */
+  font-size: 18px;
 }
 
 .bill-box input, .bill-box textarea {
@@ -126,10 +131,9 @@ body {
   border: none;
   border-bottom: 1px solid var(--border-color);
   background: transparent;
-  font-size: 20px; /* Reduced from var(--font-size) */
+  font-size: 22px;
 }
 
-/* Specific to 'Billed To' box */
 .bill-box.billed-to {
   background-color: #e3d6ff !important;
   padding: 10px;
@@ -138,7 +142,7 @@ body {
 .billed-to-table {
   border-collapse: collapse;
   width: 100%;
-  font-size: 20px; /* Reduced from 20px */
+  font-size: 22px;
 }
 
 .billed-to-table td {
@@ -156,7 +160,7 @@ body {
   word-wrap: break-word;
   white-space: pre-wrap;
   line-height: 1.3;
-  font-size: 20px;
+  font-size: 22px;
   box-sizing: border-box;
 }
 
@@ -168,7 +172,7 @@ body {
     height: auto !important;
   }
 }
-/* Textarea Container for Print Fix */
+
 .textarea-container {
   position: relative;
 }
@@ -206,6 +210,7 @@ body {
     page-break-inside: avoid;
   }
 }
+
 .billed-to-table input,
 .billed-to-table textarea {
   width: 100%;
@@ -213,7 +218,7 @@ body {
   background: transparent;
   resize: vertical;
   outline: none;
-  font-size: 20px;
+  font-size: 22px;
   overflow-wrap: break-word;
   word-break: break-word;
   white-space: pre-wrap;
@@ -221,14 +226,12 @@ body {
   box-sizing: border-box;
 }
 
-/* Make inputs wrap properly and adjust for print */
 .billed-to-table input[type="text"] {
   white-space: normal;
   overflow: visible;
   height: auto;
 }
 
-/* Fix print overflow */
 @media print {
   .billed-to-table textarea,
   .billed-to-table input[type="text"] {
@@ -239,7 +242,6 @@ body {
   }
 }
 
-/* Remove resize icon in textarea (especially in print) */
 .billed-to-table textarea {
   resize: none;
 }
@@ -251,7 +253,7 @@ textarea {
 #invoiceTable {
   width: 100%;
   border-collapse: collapse;
-  font-size: 20px; /* Reduced size */
+  font-size: 22px;
 }
 
 #invoiceTable th {
@@ -320,7 +322,7 @@ th, td {
   background: #ff4d4d;
   border: none;
   color: white;
-  font-size: 20px;
+  font-size: 22px;
   padding: 3px 6px;
   border-radius: 4px;
   cursor: pointer;
@@ -333,7 +335,7 @@ button {
   color: white;
   border: none;
   border-radius: 4px;
-  font-size: 20px; /* Reduced size */
+  font-size: 22px;
   cursor: pointer;
 }
 
@@ -379,7 +381,7 @@ button {
   border: none;
   border-bottom: 1px solid var(--border-color);
   width: 100px;
-  font-size: 20px; /* Reduced size */
+  font-size: 22px;
 }
 
 .terms-sign {
@@ -389,19 +391,19 @@ button {
 
 .terms-sign h4 {
   color: var(--primary-color);
-  font-size: 19px; /* Reduced size */
+  font-size: 19px;
 }
 
 .terms-sign ol {
   padding-left: 18px;
-  font-size: 20px; /* Reduced size */
+  font-size: 22px;
 }
 
 .signatures {
   display: flex;
   justify-content: space-between;
   margin-top: 12px;
-  font-size: 20px; /* Reduced size */
+  font-size: 22px;
 }
 
 .buttons {
@@ -465,24 +467,15 @@ button {
 .right-bank table.header-table td {
   padding: 4px 6px;
   vertical-align: middle;
-  font-size: 20px; /* Reduced from 20px */
+  font-size: 22px;
 }
-
-/* .right-bank input {
-  font-size: 2px; /* Reduced size */
- */
-
-/* .qr {
-  width: 100px;
-  height: 100px;
-} */
 
 .edit-btn {
   background: none;
   border: none;
   cursor: pointer;
   margin-left: 5px;
-  font-size: 20px; /* Reduced size */
+  font-size: 22px;
   color: #703ed7;
 }
 
@@ -551,7 +544,7 @@ button {
   background: transparent;
   resize: none;
   outline: none;
-  font-size: 20px;
+  font-size: 22px;
   overflow: hidden;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -559,6 +552,7 @@ button {
   box-sizing: border-box;
   border-bottom: 1px solid var(--border-color);
 }
+
 .billed-to-table input.auto-grow {
   white-space: normal;
   overflow: visible;
@@ -572,5 +566,77 @@ button {
     overflow: visible !important;
     word-wrap: break-word !important;
     height: auto !important;
+  }
+}
+
+/* New styles for terms footer */
+.terms-footer {
+  display: none;
+}
+
+
+@media print {
+  .terms-footer {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    padding: 10px;
+    background: white;
+    border-top: 2px solid var(--primary-color);
+    page-break-after: always;
+  }
+  
+  .main-content {
+    margin-bottom: 200px;
+  }
+  
+  .terms-section {
+    display: none !important;
+  }
+}
+
+/* .terms-section {
+  margin-top: 20px;
+} */
+
+/* Add these new styles at the end of your CSS file */
+
+/* Terms and Conditions styling */
+.terms-section {
+  margin-top: 10px;
+  padding: 0; /* Remove default padding */
+}
+
+.terms-sign {
+  margin-top: 2px;
+  padding: 10px;
+  width: 100%; /* Ensure full width */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+@media print {
+  .terms-footer {
+    display: block !important;
+    position: fixed;
+    bottom: 1cm;
+    left: 1cm;
+    right: 1cm;
+    padding: 10px 20px;
+    background: white;
+    border-top: 2px solid var(--primary-color);
+  }
+  
+  .main-content {
+    margin-bottom: 200px; /* Increased space for footer */
+  }
+  
+  #invoice {
+    padding-bottom: 150px; /* Extra space for footer */
+  }
+  
+  .terms-sign {
+    page-break-inside: avoid;
   }
 }
